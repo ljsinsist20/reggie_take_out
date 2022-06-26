@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author: ljs
  * @Pcakage: com.itheima.reggie.controller.EmployeeController
@@ -28,7 +30,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/login")
-    private R login(@RequestBody Employee employee) {
+    private R login(HttpServletRequest request, @RequestBody Employee employee) {
         QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", employee.getUsername());
         //根据用户名查询
@@ -45,13 +47,14 @@ public class EmployeeController {
         if (queryEmployee.getStatus() == 0) {
             return R.error("该用户已被禁用");
         }
-        // TODO request.getSession().setAttribute("employee", employee.getId())
+        request.getSession().setAttribute("employee", employee.getId());
         return R.success(queryEmployee);
     }
 
 
     @PostMapping("/logout")
-    private R logout() {
+    private R logout(HttpServletRequest request) {
+        request.getSession().setAttribute("employee", null);
         return R.success("退出成功");
     }
 }
