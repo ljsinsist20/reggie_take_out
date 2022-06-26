@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 /**
  * @author: ljs
@@ -56,5 +57,18 @@ public class EmployeeController {
     private R logout(HttpServletRequest request) {
         request.getSession().setAttribute("employee", null);
         return R.success("退出成功");
+    }
+
+    @PostMapping
+    private R addEmployee(HttpServletRequest request, @RequestBody Employee employee) {
+        log.info("新增员工，员工信息：{}",employee.toString());
+        employee.setPassword(DigestUtil.md5Hex("123456"));
+        employee.setCreateTime(LocalDateTime.now());
+        employee.setUpdateTime(LocalDateTime.now());
+        Long empId = (Long) request.getSession().getAttribute("employee");
+        employee.setCreateUser(empId);
+        employee.setUpdateUser(empId);
+        employeeService.save(employee);
+        return R.success("新增员工成功");
     }
 }
