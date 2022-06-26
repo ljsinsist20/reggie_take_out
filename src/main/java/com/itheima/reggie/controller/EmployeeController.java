@@ -31,7 +31,7 @@ public class EmployeeController {
         queryWrapper.eq("username", employee.getUsername());
         Employee queryEmployee = employeeService.getOne(queryWrapper);
         if (queryEmployee == null) {
-            return R.error("用户不存在");
+            return R.error("该用户不存在");
         }
         return R.success("登陆成功");
     }
