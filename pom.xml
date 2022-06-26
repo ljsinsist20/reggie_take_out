@@ -72,6 +72,11 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.1.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
