@@ -47,7 +47,7 @@ public class EmployeeController {
         if (queryEmployee.getStatus() == 0) {
             return R.error("该用户已被禁用");
         }
-        request.getSession().setAttribute("employee", employee.getId());
+        request.getSession().setAttribute("employee", queryEmployee.getId());
         return R.success(queryEmployee);
     }
 

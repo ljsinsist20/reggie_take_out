@@ -37,7 +37,8 @@ public class LoginCheckFilter implements Filter {
                 "/employee/login",
                 "/employee/logout",
                 "/backend/**",
-                "/front/**"
+                "/front/**",
+//                "/employee/page"
         };
 
         boolean check = check(urls, requestURI);
