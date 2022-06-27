@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author: ljs
  * @Pcakage: com.itheima.reggie.controller.CategoryController
@@ -22,7 +24,6 @@ public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
-
 
 
     @GetMapping("/page")
@@ -50,5 +51,11 @@ public class CategoryController {
         return R.success("修改成功");
     }
 
-
+    @GetMapping("/list")
+    public R list(int type) {
+        LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Category::getType, type);
+        List<Category> categoryList = categoryService.list(queryWrapper);
+        return R.success(categoryList);
+    }
 }
