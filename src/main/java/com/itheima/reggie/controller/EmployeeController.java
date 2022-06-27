@@ -91,4 +91,10 @@ public class EmployeeController {
         }
         return R.error("更新失败");
     }
+
+    @GetMapping("/{id}")
+    private R employeeById(@PathVariable Long id) {
+        Employee employee = employeeService.getById(id);
+        return R.success(employee);
+    }
 }
