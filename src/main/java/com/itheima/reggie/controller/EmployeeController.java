@@ -82,4 +82,13 @@ public class EmployeeController {
         employeeService.page(pageInfo, queryWrapper);
         return R.success(pageInfo);
     }
+
+    @PutMapping
+    private R putEmployeeStatus(@RequestBody Employee employee) {
+        boolean flag = employeeService.updateById(employee);
+        if (flag) {
+            return R.success("更新成功");
+        }
+        return R.error("更新失败");
+    }
 }
