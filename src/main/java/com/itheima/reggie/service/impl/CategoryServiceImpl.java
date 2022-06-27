@@ -13,5 +13,7 @@ import org.springframework.stereotype.Service;
  * @Description:
  */
 @Service
-public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
+public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category>
+implements CategoryService {
+
 }
