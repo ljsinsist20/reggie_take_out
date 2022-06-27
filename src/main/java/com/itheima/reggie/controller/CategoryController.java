@@ -1,5 +1,6 @@
 package com.itheima.reggie.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itheima.reggie.common.R;
 import com.itheima.reggie.entity.Category;
@@ -22,6 +23,8 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+
+
     @GetMapping("/page")
     public R page(int page, int pageSize) {
         Page<Category> pageInfo = new Page<>(page, pageSize);
@@ -37,9 +40,14 @@ public class CategoryController {
 
     @DeleteMapping
     public R delete(Long id) {
+        categoryService.remove(id);
+        return R.success("分类信息删除成功");
+    }
 
-        categoryService.removeById(id);
-        return R.success("删除成功");
+    @PutMapping
+    public R update(@RequestBody Category category) {
+        categoryService.updateById(category);
+        return R.success("修改成功");
     }
 
 

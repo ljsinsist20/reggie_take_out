@@ -1,7 +1,7 @@
 package com.itheima.reggie.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import reggie.domain.Setmeal;
+import com.itheima.reggie.entity.Setmeal;
 
 /**
 * @author Administrator
